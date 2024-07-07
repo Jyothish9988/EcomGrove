@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/EcomGrove.iml" filepath="$PROJECT_DIR$/.idea/EcomGrove.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dukamarket/.idea/dukamarket.iml" filepath="$PROJECT_DIR$/../dukamarket/.idea/dukamarket.iml" />
     </modules>
   </component>
 </project>
