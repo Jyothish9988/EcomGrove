@@ -1,0 +1,288 @@
+{% load static %}
+{% include 'header.html' %}
+
+<main>
+    <!-- breadcrumb__area-start -->
+    <section class="breadcrumb__area box-plr-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="breadcrumb__wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb__area-end -->
+
+    <!-- product-details-start -->
+    <div class="product-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="product__details-nav d-sm-flex align-items-start">
+                        <ul class="nav nav-tabs flex-sm-column justify-content-between" id="productThumbTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="thumbOne-tab" data-bs-toggle="tab" data-bs-target="#thumbOne" type="button" role="tab" aria-controls="thumbOne" aria-selected="true">
+                                    <img src="{{ product.featured_image.url }}" style="height:85px;width:85px" alt="">
+                                </button>
+                            </li>
+                            {% for img in product.additional_image_set.all %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="thumb-{{ img.id }}-tab" data-bs-toggle="tab" data-bs-target="#thumb-{{ img.id }}" type="button" role="tab" aria-controls="thumb-{{ img.id }}" aria-selected="false">
+                                    <img src="{{ img.image.url }}" style="height:85px;width:85px" alt="">
+                                </button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="product__details-thumb">
+                            <div class="tab-content" id="productThumbContent">
+                                <div class="tab-pane fade show active" id="thumbOne" role="tabpanel" aria-labelledby="thumbOne-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="{{ product.featured_image.url }}" alt="">
+                                    </div>
+                                </div>
+                                {% for img in product.additional_image_set.all %}
+                                <div class="tab-pane fade" id="thumb-{{ img.id }}" role="tabpanel" aria-labelledby="thumb-{{ img.id }}-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="{{ img.image.url }}" alt="">
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="product__details-content">
+                        <h6>{{ product.title }}</h6>
+                        <div class="pd-rating mb-10">
+                            <ul class="rating">
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                            </ul>
+                            <span>(01 review)</span>
+                            <span><a href="#">Add your review</a></span>
+                        </div>
+                        <div class="price mb-10">
+                            <del>₹</del> <span>₹{{ product.price }}</span> <!-- You might need to fix this part -->
+                        </div>
+                        <div class="features-des mb-20 mt-10">
+                            <ul>
+                                {{ product.description|safe }}
+                            </ul>
+                        </div>
+                        <div class="product-stock mb-20">
+                            <h5>Availability: <span>{{ product.available }} in stock</span></h5>
+                        </div>
+                        <div class="cart-option mb-15">
+                            <form action="{% url 'add_to_cart' product.slug %}" method="post">
+                                {% csrf_token %}
+                                <div class="product-quantity mr-20">
+                                    <div class="cart-plus-minus p-relative">
+                                        <input type="text" name="quantity" value="1" id="quantity-input">
+                                        <div class="dec qtybutton">-</div>
+                                        <div class="inc qtybutton">+</div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="cart-btn">Add to Cart</button>
+                            </form>
+                        </div>
+                        
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const decButton = document.querySelector('.dec.qtybutton');
+                                const incButton = document.querySelector('.inc.qtybutton');
+                                const quantityInput = document.querySelector('#quantity-input');
+                        
+                                decButton.addEventListener('click', function() {
+                                    let quantity = parseInt(quantityInput.value);
+                                    if (quantity > 1) {
+                                        quantityInput.value = quantity - 1;
+                                    }
+                                });
+                        
+                                incButton.addEventListener('click', function() {
+                                    let quantity = parseInt(quantityInput.value);
+                                    quantityInput.value = quantity + 1;
+                                });
+                            });
+                        </script>
+                       
+                        <div class="details-meta">
+                            <div class="d-meta-left">
+                                <div class="dm-item mr-20">
+                                    <a href="#"><i class="fal fa-heart"></i>Add to wishlist</a>
+                                </div>
+                                <div class="dm-item">
+                                    <a href="#"><i class="fal fa-layer-group"></i>Compare</a>
+                                </div>
+                            </div>
+                            <div class="d-meta-right">
+                                <div class="dm-item">
+                                    <a href="#"><i class="fal fa-share-alt"></i>Share</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- product-details-end -->
+
+    <!-- product-details-des-start -->
+    <div class="product-details-des mt-40 mb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="product__details-des-tab">
+                        <ul class="nav nav-tabs" id="productDesTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="des-tab" data-bs-toggle="tab" data-bs-target="#des" type="button" role="tab" aria-controls="des" aria-selected="true">Description</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="additional-tab" data-bs-toggle="tab" data-bs-target="#additional" type="button" role="tab" aria-controls="additional" aria-selected="false">Additional information</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="false">Reviews (1)</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="productDesTabContent">
+                <div class="tab-pane fade show active" id="des" role="tabpanel" aria-labelledby="des-tab">
+                    <div class="product__details-des-wrapper">
+                        {{ product.product_information|safe }}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-tab">
+                    <div class="product__desc-info">
+                        <ul>
+                            {% for info in product.additional_information_set.all %}
+                            <li>
+                                <h6>{{ info.title }}:</h6>
+                                <span>{{ info.spec }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                    <div class="product__details-review">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="review-rate">
+                                    <h5>5.00</h5>
+                                    <div class="review-star">
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                    </div>
+                                    <span class="review-count">01 Review</span>
+                                </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <div class="review-des-infod">
+                                    <h6>1 review for "<span>{{ product.title }}</span>"</h6>
+                                    <div class="review-details-des">
+                                        <div class="author-image mr-15">
+                                            <a href="#"><img src="{% static 'assets/img/author/author-sm-1.jpg' %}" alt=""></a>
+                                        </div>
+                                        <div class="review-details-content">
+                                            <div class="str-info">
+                                                <div class="review-star mr-15">
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                </div>
+                                                <div class="add-review-option">
+                                                    <a href="#">Add Review</a>
+                                                </div>
+                                            </div>
+                                            <div class="name-date mb-30">
+                                                <h6>admin – <span>May 27, 2021</span></h6>
+                                            </div>
+                                            <p>A light chair, easy to move around the dining table and about the room. Duis aute irure dolor in reprehenderit in <br> voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="product__details-comment ">
+                                    <div class="comment-title mb-20">
+                                        <h3>Add a review</h3>
+                                        <p>Your email address will not be published. Required fields are marked *</p>
+                                    </div>
+                                    <div class="comment-rating mb-20">
+                                        <span>Overall ratings</span>
+                                        <ul>
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="comment-input-box">
+                                        <form action="#">
+                                            <div class="row">
+                                                <div class="col-xxl-6 col-xl-6">
+                                                    <div class="comment-input">
+                                                        <input type="text" placeholder="Your Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-6 col-xl-6">
+                                                    <div class="comment-input">
+                                                        <input type="email" placeholder="Your Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-12">
+                                                    <textarea placeholder="Your review" class="comment-input comment-textarea"></textarea>
+                                                </div>
+                                                <div class="col-xxl-12">
+                                                    <div class="comment-agree d-flex align-items-center mb-25">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Save my name, email, and website in this browser for the next time I comment.
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-12">
+                                                    <div class="comment-submit">
+                                                        <button type="submit" class="cart-btn">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- product-details-des-end -->
+</main>
+
+{% include 'footer.html' %}

@@ -1,0 +1,80 @@
+{% load static %}
+{% include 'header.html' %}
+<main>
+    <!-- page-banner-area-start -->
+    <div class="page-banner-area page-banner-height-2" data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-banner-content text-center">
+                        <h4 class="breadcrumb-title">My account</h4>
+                        <div class="breadcrumb-two">
+                            <nav>
+                               <nav class="breadcrumb-trail breadcrumbs">
+                                  <ul class="breadcrumb-menu">
+                                     <li class="breadcrumb-trail">
+                                        <a href="index.html"><span>Home</span></a>
+                                     </li>
+                                     <li class="trail-item">
+                                        <span>My account</span>
+                                     </li>
+                                  </ul>
+                               </nav>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- page-banner-area-end -->
+
+    <!-- account-area-start -->
+    <div class="account-area mt-70 mb-70">
+        <div class="container">
+            <div class="row">
+                 <div class="col-lg-6">
+                    <img src="{% static 'assets/img/banner/page-banner-4.jpg' %}" style="width: 90%; height: 100%;">
+                 </div>
+                <div class="col-lg-6">
+                    <div class="basic-login">
+                        <h5>Update Account</h5>
+                        <form id="account-form" action="{% url 'my_account' %}" method="post">
+                            {% csrf_token %}
+                            <label for="username">Username <span>*</span></label>
+                            <input id="username" name="username" type="text" placeholder="Enter Username" value="{{ request.user.username }}" required>
+
+                            <label for="email-id">Email Address <span>*</span></label>
+                            <input id="email-id" type="text" placeholder="Email address..." value="{{ request.user.email }}" disabled>
+
+                            <label for="address">Address <span>*</span></label>
+                            <input id="address" name="address" type="text" placeholder="Address..." value="{{ shipping_address.address }}" required>
+
+                            <label for="city">City <span>*</span></label>
+                            <input id="city" name="city" type="text" placeholder="City" value="{{ shipping_address.city }}" required>
+
+                            <label for="state">State <span>*</span></label>
+                            <input id="state" name="state" type="text" placeholder="State" value="{{ shipping_address.state }}" required>
+
+                            <label for="country">Country <span>*</span></label>
+                            <input id="country" name="country" type="text" placeholder="Country" value="{{ shipping_address.country }}" required>
+
+                            <label for="pin">Postal Code <span>*</span></label>
+                            <input id="pin" name="postal_code" type="text" placeholder="Pin" value="{{ shipping_address.postal_code }}" required pattern="\d{5}(-\d{4})?">
+
+                            <label for="phone">Phone Number <span>*</span></label>
+                            <input id="phone" name="phone" type="text" placeholder="Phone" value="{{ shipping_address.phone_number }}" required pattern="^\+?\d{10,15}$">
+
+                            <div class="login-action mb-10 fix">
+                                <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#">privacy policy</a>.</p>
+                            </div>
+                            <button type="submit" class="tp-in-btn w-100">Update Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- account-area-end -->
+</main>
+{% include 'footer.html' %}

@@ -1,0 +1,8 @@
+{% load static %}
+{% include 'header.html' %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+{% include 'footer.html' %}

@@ -1,0 +1,8 @@
+<!-- Assuming this is part of your HTML template -->
+{% for img in additional_images %}
+<div>
+    <div class="product__details-nav-thumb w-img">
+        <img src="{{ img.image.url }}" alt="">
+    </div>
+</div>
+{% endfor %}
