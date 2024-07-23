@@ -184,6 +184,4 @@ def my_account(request):
     }
     return render(request, 'my_account.html', context)
 
-def products(request):
 
-    return render(request, 'products.html')
