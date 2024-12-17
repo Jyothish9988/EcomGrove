@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "662941128428",
+    "firebase_url": "https://ecomegrove-3cc3a-default-rtdb.firebaseio.com",
+    "project_id": "ecomegrove-3cc3a",
+    "storage_bucket": "ecomegrove-3cc3a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662941128428:android:8dad6fe4953df9b3a7f7c9",
+        "android_client_info": {
+          "package_name": "com.example.ecomegrove"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtNZlCZUxcvTuToMOh-YWCajJiUAtbCMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

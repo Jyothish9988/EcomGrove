@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="lavender">#8692f7</color>
+    <color name="grey">#E9E9E9</color>
+    <color name="purple_Dark">#521C98</color>
+    <color name="purple_light">#A421D2</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="star_yellow">#FFD700</color>
+    <color name="colorAccent">#FF5722</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="primary">#6200EE</color> <!-- Replace with your primary color -->
+    <color name="gray_dark">#757575</color> <!-- Dark gray for subtle text -->
+ </resources>
